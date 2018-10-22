@@ -76,18 +76,13 @@
       // toggles playing class styles
       key.classList.toggle('playing');
       // resets styles applied during transition
-      // const removeTransitionEvent = (event) => {
-      //   if (event.propertyName !== 'transform') {
-      //     // do nothing
-      //   }
-      //   else {
-      //     this.classList.remove('playing')
-      //   }
-      //   console.log(this)
-      // }
-      function removeTransitionEvent(e) {
-        if (e.propertyName !== 'transform') return;
-        console.log(this)
+      function removeTransitionEvent(event) {
+        if (event.propertyName !== 'transform') {
+          // do nothing
+        }
+        else {
+          this.classList.remove('playing')
+        }
       }
       // grabs all key class elements
       const keys = document.querySelectorAll('.key');
