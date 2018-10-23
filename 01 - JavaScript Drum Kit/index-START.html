@@ -60,7 +60,8 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
   <script>
-    window.addEventListener('keydown', (e) => {
+    // plays correct sound depending on key code
+    function playSound(e) {
       // needed for audio
       const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
       // neeeded for styles
@@ -75,20 +76,22 @@
       audio.play();
       // toggles playing class styles
       key.classList.toggle('playing');
-      // resets styles applied during transition
-      function removeTransitionEvent(event) {
-        if (event.propertyName !== 'transform') {
-          // do nothing
-        }
-        else {
-          this.classList.remove('playing')
-        }
+    }
+    // resets styles applied during transition
+    function removeTransitionEvent(e) {
+      if (e.propertyName !== 'transform') {
+        // do nothing
       }
-      // grabs all key class elements
-      const keys = document.querySelectorAll('.key');
-      // listens for tranistion to stop and applied remove our function
-      keys.forEach(key => key.addEventListener('transitionend', removeTransitionEvent))
-    })
+      else {
+        this.classList.remove('playing')
+      }
+    }
+    // grabs all key class elements
+    const keys = document.querySelectorAll('.key');
+    // listens for tranistion to stop and applied remove our function
+    keys.forEach(key => key.addEventListener('transitionend', removeTransitionEvent))
+    // listens for keydown event and plays sound func on event
+    window.addEventListener('keydown', playSound);
   </script>
 
 
